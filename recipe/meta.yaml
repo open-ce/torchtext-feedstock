@@ -8,6 +8,9 @@ package:
 source:
   git_url: https://github.com/pytorch/text.git
   git_rev: v{{ version }}-rc3
+  patches:
+    # 01xx - patch is specific to open-ce and will always be carried forward and not upstreamed
+    - 0101-disable-tcmalloc.patch
 
 build:
   number: 1

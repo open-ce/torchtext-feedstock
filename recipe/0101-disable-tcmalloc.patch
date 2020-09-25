@@ -1,0 +1,13 @@
+diff --git a/third_party/sentencepiece/CMakeLists.txt b/third_party/sentencepiece/CMakeLists.txt
+index bc0502a..b214e7f 100644
+--- a/third_party/sentencepiece/CMakeLists.txt
++++ b/third_party/sentencepiece/CMakeLists.txt
+@@ -22,7 +22,7 @@ option(SPM_ENABLE_SHARED "Builds shared libaries in addition to static libraries
+ option(SPM_BUILD_TEST "Builds test binaries." OFF)
+ option(SPM_COVERAGE "Runs gcov to test coverage." OFF)
+ option(SPM_ENABLE_TENSORFLOW_SHARED "Makes a tensorflow compatible shared file." OFF)
+-option(SPM_ENABLE_TCMALLOC "Enable TCMalloc if available." ON)
++option(SPM_ENABLE_TCMALLOC "Enable TCMalloc if available." OFF)
+ option(SPM_TCMALLOC_STATIC "Link static library of TCMALLOC." OFF)
+ option(SPM_NO_THREADLOCAL "Disable thread_local operator" OFF)
+ option(SPM_USE_BUILTIN_PROTOBUF "Use built-in protobuf" ON)
