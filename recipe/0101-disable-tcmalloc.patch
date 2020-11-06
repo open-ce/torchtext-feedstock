@@ -1,14 +1,14 @@
 diff --git a/build_tools/setup_helpers/extension.py b/build_tools/setup_helpers/extension.py
-index 6c70940..f4f7928 100644
+index f3a2097..a7de77b 100644
 --- a/build_tools/setup_helpers/extension.py
 +++ b/build_tools/setup_helpers/extension.py
-@@ -133,7 +133,8 @@ def _build_sentence_piece(debug):
+@@ -143,7 +143,8 @@ def _build_sentence_piece(debug):
      else:
          extra_args = []
      subprocess.run(
--        args=['cmake', f'-DSPM_ENABLE_SHARED=OFF', f'-DCMAKE_INSTALL_PREFIX={_TP_INSTALL_DIR}',
-+        args=['cmake', f'-DSPM_ENABLE_TCMALLOC=OFF', f'-DSPM_ENABLE_SHARED=OFF',
+-        args=['cmake', '-DSPM_ENABLE_SHARED=OFF', f'-DCMAKE_INSTALL_PREFIX={_TP_INSTALL_DIR}',
++        args=['cmake', '-DSPM_ENABLE_TCMALLOC=OFF', '-DSPM_ENABLE_SHARED=OFF', 
 +              f'-DCMAKE_INSTALL_PREFIX={_TP_INSTALL_DIR}',
+               '-DCMAKE_CXX_FLAGS=' + _get_cxx11_abi(),
                f'-DCMAKE_BUILD_TYPE={config}'] + extra_args + ['..'],
          cwd=str(build_dir),
-         check=True,
