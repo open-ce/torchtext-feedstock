@@ -7,7 +7,7 @@ index f3a2097..a7de77b 100644
          extra_args = []
      subprocess.run(
 -        args=['cmake', '-DSPM_ENABLE_SHARED=OFF', f'-DCMAKE_INSTALL_PREFIX={_TP_INSTALL_DIR}',
-+        args=['cmake', '-DSPM_ENABLE_TCMALLOC=OFF', '-DSPM_ENABLE_SHARED=OFF', 
++        args=['cmake', '-DSPM_ENABLE_TCMALLOC=OFF', '-DSPM_ENABLE_SHARED=OFF',
 +              f'-DCMAKE_INSTALL_PREFIX={_TP_INSTALL_DIR}',
                '-DCMAKE_CXX_FLAGS=' + _get_cxx11_abi(),
                f'-DCMAKE_BUILD_TYPE={config}'] + extra_args + ['..'],
