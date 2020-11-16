@@ -13,5 +13,5 @@ tests:
     command: |
         cd text
         pytest -v --ignore='test/test_build.py' -k "not test_multi30k" test/
-#  - name: Clean tests
-#    command: rm -rf text
+  - name: Clean tests
+    command: rm -rf text
