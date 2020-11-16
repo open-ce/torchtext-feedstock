@@ -1,0 +1,17 @@
+tests:
+  - name: Setup TorchText Tests
+    command: |
+        TEXT_VERSION=$(python -c "import torchtext; print(torchtext.__version__)")
+        TEXT_COMMIT=${TEXT_VERSION#*+}
+        git clone https://github.com/pytorch/text.git
+        cd text
+        git checkout ${TEXT_COMMIT}
+        rm -rf torchtext
+        conda install -y pytest mock sentencepiece spacy nltk
+        pip install revtok
+  - name: Run TorchText tests
+    command: |
+        cd text
+        pytest -v --ignore='test/test_build.py' -k "not test_multi30k" test/
+#  - name: Clean tests
+#    command: rm -rf text
