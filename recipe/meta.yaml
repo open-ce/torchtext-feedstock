@@ -13,14 +13,14 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 1
+  number: 2
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - cmake {{ cmake }}
-    - make  {{ make }}
+    - make
   host:
     - python {{ python }}
     - pytorch-base     {{ pytorch }}
