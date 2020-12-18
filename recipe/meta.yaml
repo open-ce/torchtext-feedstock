@@ -13,7 +13,7 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 2
+  number: 3
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
@@ -30,6 +30,7 @@ requirements:
     - pytorch-base {{ pytorch }}
     - requests {{ requests }}
     - tqdm {{ tqdm }}
+    - sentencepiece {{ sentencepiece }}
 
 test:
   imports:
