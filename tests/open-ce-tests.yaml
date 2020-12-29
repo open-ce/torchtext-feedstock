@@ -7,7 +7,7 @@ tests:
         cd text
         git checkout ${TEXT_COMMIT}
         rm -rf torchtext
-        conda install -y pytest mock sentencepiece spacy nltk
+        conda install -y pytest mock sentencepiece nltk
         pip install revtok
   - name: Run TorchText tests
     command: |
