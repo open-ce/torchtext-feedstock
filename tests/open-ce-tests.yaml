@@ -8,11 +8,12 @@ tests:
         cd text
         git checkout ${TEXT_COMMIT}
         rm -rf torchtext
-        conda install -y pytest mock sentencepiece nltk
+        conda install -y pytest mock sentencepiece nltk parameterized
         pip install revtok
   - name: Run TorchText tests
     command: |
         cd text
-        pytest -v --ignore='test/test_build.py' -k "not test_multi30k" test/
+        python -m test.common.cache_utils
+        pytest -v --ignore='test/test_build.py' -k "not test_multi30k and not test_iwslt2016 and not test_iwslt2017" test/
   - name: Clean tests
     command: rm -rf text
