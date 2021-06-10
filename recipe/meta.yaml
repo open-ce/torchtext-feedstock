@@ -13,7 +13,7 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 5
+  number: 6 
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
@@ -22,10 +22,15 @@ requirements:
     - cmake {{ cmake }}
     - make
     - patch
-
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   host:
     - python {{ python }}
     - pytorch-base     {{ pytorch }}
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   run:
     - numpy {{ numpy }}
     - python {{ python }}
