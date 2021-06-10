@@ -13,7 +13,7 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 6 
+  number: 6
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
 
 requirements:
