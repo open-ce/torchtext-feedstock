@@ -40,6 +40,10 @@ requirements:
     - sentencepiece {{ sentencepiece }}
 
 test:
+  requires:
+    # Use pins to control cos6/cos7 match
+    - libgcc-ng  {{ libgcc }}
+    - libstdcxx-ng  {{ libstdcxx }}
   imports:
     - torchtext
     - torchtext.data
