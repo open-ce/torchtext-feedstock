@@ -13,7 +13,7 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 2
+  number: 1
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
   ignore_run_exports:
     - libgcc-ng
@@ -38,7 +38,6 @@ requirements:
   run:
     - numpy {{ numpy }}
     - python {{ python }}
-    - _pytorch_select  {{ pytorch_select_version }}
     - pytorch-base {{ pytorch }}
     - requests {{ requests }}
     - tqdm {{ tqdm }}
