@@ -47,6 +47,8 @@ requirements:
     - libstdcxx-ng  {{ libstdcxx }}
 
 test:
+  requires:
+    - _pytorch_select  {{ pytorch_select_version }}
   imports:
     - torchtext
     - torchtext.data
