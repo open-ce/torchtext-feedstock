@@ -13,11 +13,8 @@ source:
     - 0101-disable-tcmalloc.patch
 
 build:
-  number: 1
+  number: 2
   string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}
-  ignore_run_exports:
-    - libgcc-ng
-    - libstdcxx-ng
 
 requirements:
   build:
@@ -41,9 +38,6 @@ requirements:
     - requests {{ requests }}
     - tqdm {{ tqdm }}
     - sentencepiece {{ sentencepiece }}
-    # Use pins to control cos6/cos7 match
-    - libgcc-ng  {{ libgcc }}
-    - libstdcxx-ng  {{ libstdcxx }}
 
 test:
   imports:
