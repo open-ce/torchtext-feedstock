@@ -31,7 +31,6 @@ requirements:
     - pytorch-base {{ pytorch }}
     - requests {{ requests }}
     - tqdm {{ tqdm }}
-    - sentencepiece {{ sentencepiece }}
 
 test:
   imports:
