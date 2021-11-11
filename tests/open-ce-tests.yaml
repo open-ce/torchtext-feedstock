@@ -9,7 +9,7 @@ tests:
         git checkout ${TEXT_COMMIT}
         rm -rf torchtext
         conda install -y pytest mock sentencepiece nltk parameterized
-        pip install revtok
+        pip install revtok expecttest
   - name: Run TorchText tests
     command: |
         cd text
