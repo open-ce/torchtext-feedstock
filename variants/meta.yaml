@@ -1,4 +1,4 @@
-# A metapackge for installing GPU or CPU versions of torchvision explicitly
+# A metapackge for installing GPU or CPU versions of torchtext explicitly
 
 {% set version = "0.11.0" %}
 
@@ -24,8 +24,8 @@ about:
   license_family: BSD
   summary: Meta-package to install torchtext variant for {{ 'GPU-enabled' if build_type == 'cuda' else 'CPU-only' }} pytorch 
   description: Meta-package to install torchtext varaint for {{ 'GPU-enabled' if build_type == 'cuda' else 'CPU-only' }} pytorch 
-  dev_url: https://github.com/pytorch/vision
-  doc_url: https://pytorch.org/docs/stable/torchvision/index.html
+  dev_url: https://github.com/pytorch/text
+  doc_url: https://pytorch.org/text/stable/index.html
 
 extra:
   recipe-maintainers:
