@@ -1,0 +1,6 @@
+recipes:
+  - name : torchtext-base
+    path : recipe
+
+  - name : torchtext-meta
+    path : variants
