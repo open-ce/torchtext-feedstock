@@ -1,6 +1,6 @@
 # A metapackge for installing GPU or CPU versions of torchtext explicitly
 
-{% set version = "0.11.2" %}
+{% set version = "0.12.0" %}
 
 package:
   name: torchtext{{ '-cpu' if build_type == 'cpu' else '' }}
