@@ -21,7 +21,7 @@ if [[ $ppc_arch == "p10" ]]
 then
   if [[ -z "${GCC_11_HOME}" ]];
   then
-    echo "Please set GCC_11_HOME to the install path of gcc-toolset-10"
+    echo "Please set GCC_11_HOME to the install path of gcc-toolset-11"
     exit 1
   else
     export CMAKE_PREFIX_PATH=$PREFIX
