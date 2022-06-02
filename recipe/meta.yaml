@@ -19,7 +19,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('cxx') }}               #[ppc_arch != "p10"]
+    - {{ compiler('cxx') }}
     - cmake {{ cmake }}
     - make
     - patch
