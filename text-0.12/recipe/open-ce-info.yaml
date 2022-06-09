@@ -1,0 +1,16 @@
+third_party_packages:
+- name: double-conversion
+  license: BSD-3-Clause
+  url:
+    - https://github.com/google/double-conversion.git
+  version: b1d531b
+- name: re2
+  license: BSD-3-Clause
+  url:
+    - https://github.com/google/re2.git
+  version: 2b25567
+- name: sentencepiece
+  license:  Apache License
+  url:
+    - https://github.com/google/sentencepiece.git
+  version: e8a84a1
