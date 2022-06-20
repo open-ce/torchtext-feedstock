@@ -1,0 +1,32 @@
+# A metapackge for installing GPU or CPU versions of torchtext explicitly
+
+{% set version = "0.13.0" %}
+
+package:
+  name: torchtext{{ '-cpu' if build_type == 'cpu' else '' }}
+  version: {{ version }} 
+
+build:
+  number: 1
+  string: py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }}   #[build_type == 'cpu']
+  string: {{ build_type }}{{ cudatoolkit | replace(".*", "") }}_py{{ python | replace(".", "") }}_{{ PKG_BUILDNUM }} #[build_type == 'cuda']
+
+requirements:
+  run:
+    - pytorch-base {{ pytorch }}
+    - _pytorch_select {{ pytorch_select_version }}
+    - torchtext-base {{ torchtext }}
+    - python {{ python }}
+
+about:
+  home: http://pytorch.org/
+  license: BSD 3-Clause
+  license_family: BSD
+  summary: Meta-package to install torchtext variant for {{ 'GPU-enabled' if build_type == 'cuda' else 'CPU-only' }} pytorch 
+  description: Meta-package to install torchtext varaint for {{ 'GPU-enabled' if build_type == 'cuda' else 'CPU-only' }} pytorch 
+  dev_url: https://github.com/pytorch/text
+  doc_url: https://pytorch.org/text/stable/index.html
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team

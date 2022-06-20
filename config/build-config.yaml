@@ -7,8 +7,8 @@ recipes:
     path : text-0.11/variants
 {% else %}
   - name : torchtext-base
-    path : text-0.12/recipe
+    path : text-0.13/recipe
 
   - name : torchtext-meta
-    path : text-0.12/variants
+    path : text-0.13/variants
 {% endif %}

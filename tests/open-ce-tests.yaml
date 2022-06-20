@@ -2,18 +2,18 @@ tests:
   - name: Setup TorchText Tests
     command: |
         TEXT_VERSION=$(python -c "import torchtext; print(torchtext.__version__)")
-        TEXT_COMMIT=${TEXT_VERSION#*+}
+        TAG=${TEXT_VERSION/a0+*/}
         conda install -y git
         git clone https://github.com/pytorch/text.git
         cd text
-        git checkout ${TEXT_COMMIT}
+        git checkout v${TAG}
         rm -rf torchtext
         conda install -y pytest mock sentencepiece nltk parameterized
         pip install revtok expecttest
   - name: Run TorchText tests
     command: |
         cd text
-        python -m test.common.cache_utils
+#        python -m test.common.cache_utils
         pytest -v --ignore='test/test_build.py' -k "not test_multi30k and not test_iwslt2016 and not test_iwslt2017" test/
   - name: Clean tests
     command: rm -rf text
