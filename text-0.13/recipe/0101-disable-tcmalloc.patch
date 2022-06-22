@@ -1,17 +1,30 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 80e98f42..09e82e14 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -51,13 +51,15 @@ option(BUILD_TORCHTEXT_PYTHON_EXTENSION "Build Python extension" OFF)
+ 
+ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ 
+-find_package(Torch REQUIRED)
++set(TORCH_INSTALL_PREFIX $ENV{TORCH_INSTALL_PREFIX})
++find_library(TORCH_C10_LIBRARY c10 PATHS "${TORCH_INSTALL_PREFIX}/lib")
++find_library(TORCH_LIBRARY torch PATHS "${TORCH_INSTALL_PREFIX}/lib")
++find_library(TORCH_CPU_LIBRARY torch_cpu PATHS "${TORCH_INSTALL_PREFIX}/lib")
+ 
+ if(MSVC)
+   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+ endif()
+ 
+-
+ # TORCH_CXX_FLAGS contains the same -D_GLIBCXX_USE_CXX11_ABI value as PyTorch
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall ${TORCH_CXX_FLAGS}")
+ 
 diff --git a/build_tools/setup_helpers/extension.py b/build_tools/setup_helpers/extension.py
-index 1882073c..a1134aab 100644
+index 1882073c..089da312 100644
 --- a/build_tools/setup_helpers/extension.py
 +++ b/build_tools/setup_helpers/extension.py
-@@ -64,6 +64,8 @@ class CMakeBuild(build_ext):
-             f"-DCMAKE_PREFIX_PATH={torch.utils.cmake_prefix_path}",
-             f"-DCMAKE_INSTALL_PREFIX={extdir}",
-             "-DCMAKE_VERBOSE_MAKEFILE=ON",
-+            "-DCMAKE_CUDA_COMPILER=${CUDA_HOME}/bin/nvcc",
-+            "-DCMAKE_CUDA_HOST_COMPILER=$GXX"
-             f"-DPython_INCLUDE_DIR={distutils.sysconfig.get_python_inc()}",
-             "-DBUILD_TORCHTEXT_PYTHON_EXTENSION:BOOL=ON",
-             "-DRE2_BUILD_TESTING:BOOL=OFF",
-@@ -71,6 +73,7 @@ class CMakeBuild(build_ext):
+@@ -71,6 +71,7 @@ class CMakeBuild(build_ext):
              "-DBUILD_SHARED_LIBS=OFF",
              "-DCMAKE_POLICY_DEFAULT_CMP0063=NEW",
              "-DSPM_ENABLE_SHARED=OFF",
@@ -19,3 +32,36 @@ index 1882073c..a1134aab 100644
          ]
          build_args = ["--target", "install"]
  
+diff --git a/torchtext/csrc/CMakeLists.txt b/torchtext/csrc/CMakeLists.txt
+index 93a6624f..642f5b03 100644
+--- a/torchtext/csrc/CMakeLists.txt
++++ b/torchtext/csrc/CMakeLists.txt
+@@ -23,6 +23,8 @@ set(
+ 
+ set(
+   LIBTORCHTEXT_INCLUDE_DIRS
++  ${TORCH_INSTALL_PREFIX}/include
++  ${TORCH_INSTALL_PREFIX}/include/torch/csrc/api/include
+   ${PROJECT_SOURCE_DIR}
+   ${PROJECT_SOURCE_DIR}/third_party/sentencepiece/src
+   $<TARGET_PROPERTY:re2,INCLUDE_DIRECTORIES>
+@@ -32,7 +34,9 @@ set(
+ 
+ set(
+   LIBTORCHTEXT_LINK_LIBRARIES
+-  torch
++  ${TORCH_C10_LIBRARY}
++  ${TORCH_LIBRARY}
++  ${TORCH_CPU_LIBRARY}
+   re2
+   double-conversion
+   sentencepiece
+@@ -123,6 +127,8 @@ if (BUILD_TORCHTEXT_PYTHON_EXTENSION)
+     $<TARGET_PROPERTY:re2,INCLUDE_DIRECTORIES>
+     $<TARGET_PROPERTY:double-conversion,INCLUDE_DIRECTORIES>
+     $<TARGET_PROPERTY:utf8proc,INCLUDE_DIRECTORIES>
++    ${TORCH_INSTALL_PREFIX}/include
++    ${TORCH_INSTALL_PREFIX}/include/torch/csrc/api/include
+     )
+ 
+   set(
