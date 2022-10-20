@@ -1,0 +1,24 @@
+From ef3a4c864ed578d1b4a7dfe931f43803646a6fb8 Mon Sep 17 00:00:00 2001
+From: Deepali Chourasia <deepch23@in.ibm.com>
+Date: Thu, 13 Oct 2022 09:30:30 +0000
+Subject: [PATCH] disble tcmalloc
+
+---
+ tools/setup_helpers/extension.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tools/setup_helpers/extension.py b/tools/setup_helpers/extension.py
+index 760b3bb7..620bc370 100644
+--- a/tools/setup_helpers/extension.py
++++ b/tools/setup_helpers/extension.py
+@@ -76,6 +76,7 @@ class CMakeBuild(build_ext):
+             "-DBUILD_SHARED_LIBS=OFF",
+             "-DCMAKE_POLICY_DEFAULT_CMP0063=NEW",
+             "-DSPM_ENABLE_SHARED=OFF",
++            "-DSPM_ENABLE_TCMALLOC=OFF",
+             f"-DTORCH_COMPILED_WITH_CXX_ABI={_get_cxx11_abi()}",
+         ]
+         build_args = ["--target", "install"]
+-- 
+2.34.1
+
