@@ -1,5 +1,5 @@
 {% set name = "torchtext-base" %}
-{% set version = "0.14.1" %}
+{% set version = "0.15.1" %}
 
 package:
   name: "{{ name|lower }}"
@@ -37,6 +37,7 @@ requirements:
     - requests {{ requests }}
     - tqdm {{ tqdm }}
     - sentencepiece {{ sentencepiece }}
+    - torchdata
 
 test:
   imports:
