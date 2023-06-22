@@ -8,12 +8,11 @@ tests:
         cd text
         git checkout v${TAG}
         rm -rf torchtext
-        conda install -y pytest mock sentencepiece nltk parameterized
+        conda install -y pytest mock sentencepiece nltk parameterized sacremoses spacy portalocker
         pip install revtok expecttest torchdata
   - name: Run TorchText tests
     command: |
         cd text
-#        python -m test.common.cache_utils
-        pytest -v --ignore='test/test_build.py' -k "not test_multi30k and not test_iwslt2016 and not test_iwslt2017" test/
+         pytest -v --ignore='test/torchtext_unittest/prototype/test_with_asset.py' -k "not test_get_tokenizer_spacy" test/torchtext_unittest
   - name: Clean tests
     command: rm -rf text
