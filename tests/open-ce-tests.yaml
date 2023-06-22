@@ -13,6 +13,6 @@ tests:
   - name: Run TorchText tests
     command: |
         cd text
-         pytest -v --ignore='test/torchtext_unittest/prototype/test_with_asset.py' -k "not test_get_tokenizer_spacy" test/torchtext_unittest
+        pytest -v --ignore='test/torchtext_unittest/prototype/test_with_asset.py' -k "not test_get_tokenizer_spacy" test/torchtext_unittest
   - name: Clean tests
     command: rm -rf text
