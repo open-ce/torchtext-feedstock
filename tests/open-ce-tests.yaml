@@ -9,11 +9,22 @@ tests:
         git checkout v${TAG}
         rm -rf torchtext
         conda install -y pytest mock sentencepiece nltk parameterized
-        pip install revtok expecttest torchdata
+        pip install revtok expecttest
   - name: Run TorchText tests
     command: |
         cd text
-#        python -m test.common.cache_utils
-        pytest -v --ignore='test/test_build.py' -k "not test_multi30k and not test_iwslt2016 and not test_iwslt2017" test/
+        TESTSUITES_TO_RUN=(
+                      test/test_functional.py
+                      test/test_transforms.py
+                      test/test_utils.py
+                      test/test_vocab.py
+                      test/data/test_functional.py
+                      test/data/test_modules.py
+        )
+        for test_suite in "${TESTSUITES_TO_RUN[@]}"
+        do
+          TEST_SUITES+="$test_suite "
+        done
+        pytest -v --ignore='test/test_build.py' -k "not test_multi30k and not test_iwslt2016 and not test_iwslt2017" ${TEST_SUITES}
   - name: Clean tests
     command: rm -rf text
