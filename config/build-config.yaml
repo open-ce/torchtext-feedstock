@@ -1,14 +1,6 @@
 recipes:
-{% if build_type == 'cuda' and cudatoolkit == '11.2' %}
-  - name : torchtext-base
-    path : text-0.11/recipe
-
-  - name : torchtext-meta
-    path : text-0.11/variants
-{% else %}
   - name : torchtext-base
     path : text-0.16.1/recipe
 
   - name : torchtext-meta
     path : text-0.16.1/variants
-{% endif %}
