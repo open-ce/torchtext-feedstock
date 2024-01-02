@@ -1,6 +1,6 @@
 recipes:
   - name : torchtext-base
-    path : text-0.16.1/recipe
+    path : text-0.16.2/recipe
 
   - name : torchtext-meta
-    path : text-0.16.1/variants
+    path : text-0.16.2/variants
